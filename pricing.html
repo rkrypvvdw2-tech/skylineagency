@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans | Skyline Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A2463',
+                        accent: '#0099FF',
+                        dark: '#050505',
+                        light: '#FFFFFF',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(0, 153, 255, 0.3), 0 0 40px rgba(0, 153, 255, 0.1)',
+                        'card': '0 8px 32px rgba(0, 0, 0, 0.2)',
+                        'premium': '0 0 30px rgba(0, 153, 255, 0.4), 0 0 60px rgba(0, 153, 255, 0.2)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .scroll-smooth { scroll-behavior: smooth; }
+            .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+            .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+            .glass-hover { transition: all 0.4s ease; }
+            .glass-hover:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(0, 153, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 153, 255, 0.15); transform: translateY(-6px); }
+            .glow-text { background: linear-gradient(90deg, #0099FF, #40C4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            .bg-gradient-custom { background: linear-gradient(135deg, #0A2463 0%, #050505 100%); }
+            .animate-line { width: 120px; height: 4px; background: linear-gradient(90deg, #0099FF, #40C4FF); border-radius: 2px; position: relative; overflow: hidden; }
+            .animate-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255,255,255,0.3); animation: shine 2s infinite; }
+            @keyframes shine { 100% { left: 100%; } }
+            .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+            .fade-in.active { opacity: 1; transform: translateY(0); }
+            .float { animation: float 6s infinite ease-in-out; }
+            @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+            .zoom-bg { animation: zoomBg 20s infinite alternate ease-in-out; }
+            @keyframes zoomBg { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+            .glow-pulse { animation: glowPulse 3s infinite alternate; }
+            @keyframes glowPulse { 0% { box-shadow: 0 0 15px rgba(0, 153, 255, 0.2); } 100% { box-shadow: 0 0 30px rgba(0, 153, 255, 0.4); } }
+            .price-active { background: rgba(0, 153, 255, 0.2); border-color: rgba(0, 153, 255, 0.5); color: #ffffff; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-custom text-white overflow-x-hidden scroll-smooth relative">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 opacity-20 zoom-bg">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div id="particles" class="absolute inset-0"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 bg-dark/30 backdrop-blur border-b border-accent/10">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+             <a href="index.html" class="flex items-center gap-3">
+                <img src="skyline-logo.png.jpeg" alt="Skyline Agency Logo" class="h-14">
+            </a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="font-medium hover:text-accent transition-colors">About</a>
+                <a href="services.html" class="font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="font-medium text-accent">Pricing</a>
+                <a href="blog.html" class="font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-5 py-2 rounded-lg transition-all">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-5 py-2 rounded-lg transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.4)] font-semibold">Get A Quote</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-3">
+                <a href="index.html" class="py-2.5 font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="py-2.5 font-medium hover:text-accent transition-colors">About</a>
+                <a href="services.html" class="py-2.5 font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="py-2.5 font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="py-2.5 font-medium text-accent">Pricing</a>
+                <a href="blog.html" class="py-2.5 font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="py-2.5 font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-4 py-2.5 rounded-lg text-center transition-all mt-2">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-4 py-2.5 rounded-lg text-center transition-all shadow-glow mt-1 font-semibold">Get A Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="min-h-[60vh] flex items-center relative z-10 pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 py-20 text-center fade-in active">
+            <h1 class="text-[clamp(2.8rem,6vw,5rem)] font-extrabold leading-[1.1] text-shadow mb-6">
+                Transparent <span class="glow-text">Pricing</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+                Premium digital solutions at clear, competitive rates. Choose your currency and pick the perfect plan for your business goals.
+            </p>
+
+            <!-- Currency Switcher -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button class="currency-btn price-active glass px-5 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-currency="XAF" data-symbol="FCFA" data-rate="1">FCFA</button>
+                <button class="currency-btn glass px-5 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-currency="USD" data-symbol="$" data-rate="0.0016">USD</button>
+                <button class="currency-btn glass px-5 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-currency="EUR" data-symbol="€" data-rate="0.0015">EUR</button>
+                <button class="currency-btn glass px-5 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-currency="GBP" data-symbol="£" data-rate="0.0013">GBP</button>
+            </div>
+
+            <div class="animate-line mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- 2. Main Pricing Plans -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+                <!-- Plan 1: Starter -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <div class="p-8 text-center border-b border-white/10">
+                        <h3 class="text-xl font-bold mb-2">Starter</h3>
+                        <p class="text-gray-400 text-sm mb-4">Perfect for small businesses & startups</p>
+                        <div class="mb-2">
+                            <span class="text-4xl font-bold glow-text price-value" data-base-price="250000">250,000</span>
+                            <span class="text-lg text-gray-300 price-symbol"> FCFA</span>
+                        </div>
+                        <p class="text-xs text-gray-500">One-time payment</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> 5-Page Professional Website</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Mobile Responsive Design</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Basic SEO Setup</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Contact Form Integration</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> 1 Month Free Support</li>
+                            <li class="flex items-center gap-2 text-gray-500 line-through"><i class="fa fa-times"></i> Advanced Features</li>
+                            <li class="flex items-center gap-2 text-gray-500 line-through"><i class="fa fa-times"></i> E-Commerce Functionality</li>
+                        </ul>
+                        <a href="book-now.html" class="block text-center glass hover:bg-accent/20 py-3 rounded-lg font-medium transition-all">Choose Plan</a>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Business (Most Popular) -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active border-2 border-accent/50 scale-105 shadow-premium relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white text-sm px-4 py-1 rounded-full font-semibold glow-pulse">MOST POPULAR</div>
+                    <div class="p-8 text-center border-b border-white/10 bg-accent/5">
+                        <h3 class="text-xl font-bold mb-2">Business</h3>
+                        <p class="text-gray-400 text-sm mb-4">Ideal for growing companies & brands</p>
+                        <div class="mb-2">
+                            <span class="text-4xl font-bold glow-text price-value" data-base-price="550000">550,000</span>
+                            <span class="text-lg text-gray-300 price-symbol"> FCFA</span>
+                        </div>
+                        <p class="text-xs text-gray-500">One-time payment</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> 10-Page Premium Website</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Fully Responsive & Fast</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Advanced SEO & Analytics</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Branding & UI Design</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> CMS (Easy Content Management)</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Basic E-Commerce (Up to 50 Products)</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> 3 Months Free Support</li>
+                        </ul>
+                        <a href="book-now.html" class="block text-center bg-accent hover:bg-accent/90 text-white py-3 rounded-lg font-medium transition-all shadow-glow">Choose Plan</a>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Premium -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <div class="p-8 text-center border-b border-white/10">
+                        <h3 class="text-xl font-bold mb-2">Premium</h3>
+                        <p class="text-gray-400 text-sm mb-4">Complete solution for established businesses</p>
+                        <div class="mb-2">
+                            <span class="text-4xl font-bold glow-text price-value" data-base-price="950000">950,000</span>
+                            <span class="text-lg text-gray-300 price-symbol"> FCFA</span>
+                        </div>
+                        <p class="text-xs text-gray-500">One-time payment</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Unlimited Pages & Features</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> High-End Custom Design</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Full E-Commerce System</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> CRM & Business Automation</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Advanced Security & Speed</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> Digital Marketing Setup</li>
+                            <li class="flex items-center gap-2"><i class="fa fa-check text-accent"></i> 12 Months Priority Support</li>
+                        </ul>
+                        <a href="book-now.html" class="block text-center glass hover:bg-accent/20 py-3 rounded-lg font-medium transition-all">Choose Plan</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Additional Services Pricing -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Additional Services</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Add-ons and specialized services to complete your digital transformation.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">Domain Name & Hosting</h4>
+                        <p class="text-xs text-gray-400">Annual subscription</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="75000">75,000</div>
+                        <div class="text-xs price-symbol">FCFA</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">Logo & Brand Identity</h4>
+                        <p class="text-xs text-gray-400">Complete branding package</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="150000">150,000</div>
+                        <div class="text-xs price-symbol">FCFA</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">SEO Optimization</h4>
+                        <p class="text-xs text-gray-400">Monthly service</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="100000">100,000</div>
+                        <div class="text-xs price-symbol">FCFA /mo</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">Social Media Management</h4>
+                        <p class="text-xs text-gray-400">Monthly service</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="120000">120,000</div>
+                        <div class="text-xs price-symbol">FCFA /mo</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">Business Automation</h4>
+                        <p class="text-xs text-gray-400">CRM, Chatbots, Workflows</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="200000">200,000</div>
+                        <div class="text-xs price-symbol">FCFA</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-5 flex justify-between items-center fade-in active">
+                    <div>
+                        <h4 class="font-semibold">Maintenance & Support</h4>
+                        <p class="text-xs text-gray-400">Monthly retainer</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold price-value" data-base-price="50000">50,000</div>
+                        <div class="text-xs price-symbol">FCFA /mo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Custom Project Section -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center glass rounded-2xl p-10 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Need Something Custom?</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 text-lg mb-8">
+                    Every business is unique. If you have special requirements, complex features, or a large-scale project, we create a fully customized plan and quote just for you — fair pricing, no hidden fees.
+                </p>
+                <a href="contact.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1 inline-block">
+                    Request Custom Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FAQ Section -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Frequently Asked Questions</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="glass rounded-xl p-5 fade-in active">
+                    <h4 class="font-semibold text-lg mb-2">Are there any hidden costs?</h4>
+                    <p class="text-gray-400 text-sm">No. All our prices are clear and transparent. What you see is what you pay — no extra fees, no surprises.</p>
+                </div>
+                <div class="glass rounded-xl p-5 fade-in active">
+                    <h4 class="font-semibold text-lg mb-2">Can I change my plan later?</h4>
+                    <p class="text-gray-400 text-sm">Yes. You can upgrade or add services at any time as your business grows.</p>
+                </div>
+                <div class="glass rounded-xl p-5 fade-in active">
+                    <h4 class="font-semibold text-lg mb-2">Do you offer payment plans?</h4>
+                    <p class="text-gray-400 text-sm">Yes. We offer flexible payment options: 50% deposit to start, 50% upon delivery — contact us to arrange.</p>
+                </div>
+                <div class="glass rounded-xl p-5 fade-in active">
+                    <h4 class="font-semibold text-lg mb-2">How long does a project take?</h4>
+                    <p class="text-gray-400 text-sm">Starter projects: 2–3 weeks. Business plans: 3–4 weeks. Premium/custom projects: 4–6 weeks depending on complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Call To Action -->
+    <section class="py-24 relative z-10 bg-dark/60 border-y border-accent/20">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 text-center fade-in active relative z-10">
+            <h2 class="text-[clamp(2rem,4vw,3.2rem)] font-bold mb-6 text-shadow">
+                Ready To Start Your Project?
+            </h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+                Choose your plan or contact us for a custom quote. We deliver premium quality that helps you grow.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="book-now.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1">
+                    Get Started Now
+                </a>
+                <a href="contact.html" class="glass hover:bg-accent/10 text-white border border-accent/30 px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-glow hover:-translate-y-1">
+                    Ask A Question
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="bg-dark/80 relative z-10 py-16 border-t border-accent/20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-5 gap-10 mb-10">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-3">
+                        <span class="text-white">SKYLINE</span>
+                        <span class="glow-text">AGENCY</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm max-w-md">Premium digital agency building powerful brands, high-performance websites, and growth-driven marketing solutions. We help businesses rise above.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-accent transition-colors">Portfolio</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Digital Marketing</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Branding</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Automation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa fa-phone"></i> (+237) 681 500 358</li>
+                        <li class="flex items-center gap-2"><i class="fa fa-envelope"></i> ambebirikaldo@icloud.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 Skyline Agency. All rights reserved. Premium Digital Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chatbotToggle" class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent/20 backdrop-blur text-accent flex items-center justify-center shadow-glow cursor-pointer hover:scale-110 transition-all">
+        <i class="fa fa-comments text-2xl"></i>
+    </div>
+
+    <div id="chatbotWindow" class="fixed bottom-24 right-6 w-[90vw] max-w-[380px] h-[500px] glass rounded-2xl shadow-glow z-50 overflow-hidden transform scale-0 opacity-0 transition-all origin-bottom-right">
+        <div class="bg-accent/20 backdrop-blur text-white p-4 flex justify-between items-center border-b border-accent/30">
+            <div class="font-semibold flex items-center gap-2">
+                <i class="fa fa-robot"></i> Skyline Assistant
+            </div>
+            <button id="closeChat" class="text-white/70 hover:text-white">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="h-[calc(100%-110px)] p-4 overflow-y-auto bg-dark/40 space-y-3">
+            <div class="flex gap-3 max-w-[80%]">
+                <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fa fa-robot"></i>
+                </div>
+                <div class="glass p-3 rounded-xl text-white">
+                    Hello! 👋 Welcome to Skyline Agency. How can we help you build your digital success today?
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-accent/20 bg-dark/40 flex gap-2">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-2.5 glass rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent text-white">
+            <button id="sendMsg" class="w-10 h-10 rounded-lg bg-accent/20 hover:bg-accent/40 text-accent flex items-center justify-center transition-all">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.innerHTML = mobileMenu.classList.contains('hidden') ? '<i class="fa fa-bars"></i>' : '<i class="fa fa-times"></i>';
+                });
+            }
+
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 50) {
+                    navbar.classList.add('bg-dark/60', 'shadow-glow');
+                    navbar.classList.remove('bg-dark/30');
+                } else {
+                    navbar.classList.remove('bg-dark/60', 'shadow-glow');
+                    navbar.classList.add('bg-dark/30');
+                }
+            });
+
+            // Particles Background
+            function createParticles() {
+                const container = document.getElementById('particles');
+                for(let i=0; i<40; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'absolute w-1 h-1 bg-accent/40 rounded-full';
+                    p.style.left = `${Math.random()*100}%`;
+                    p.style.top = `${Math.random()*100}%`;
+                    p.style.animation = `float ${5 + Math.random()*8}s infinite ease-in-out`;
+                    container.appendChild(p);
+                }
+            }
+            createParticles();
+
+            // Fade-in Animation on Scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // --------------------------
+            // CURRENCY SWITCHER LOGIC
+            // --------------------------
+            const currencyButtons = document.querySelectorAll('.currency-btn');
+            const priceValues = document.querySelectorAll('.price-value');
+            const priceSymbols = document.querySelectorAll('.price-symbol');
+
+            currencyButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active state
+                    currencyButtons.forEach(b => b.classList.remove('price-active'));
+                    // Add active to clicked
+                    btn.classList.add('price-active');
+
+                    // Get data
+                    const symbol = btn.getAttribute('data-symbol');
+                    const rate = parseFloat(btn.getAttribute('data-rate'));
+
+                    // Update all prices
+                    priceValues.forEach(priceEl => {
+                        const basePrice = parseFloat(priceEl.getAttribute('data-base-price'));
+                        const converted = Math.round(basePrice * rate);
+                        priceEl.textContent = converted.toLocaleString();
+                    });
+
+                    // Update all symbols
+                    priceSymbols.forEach(symEl => {
+                        let text = symEl.textContent;
+                        // Replace symbol part
+                        if (text.includes('/mo')) {
+                            symEl.textContent = ' ' + symbol + ' /mo';
+                        } else if (text.includes('One-time')) {
+                            symEl.textContent = ' ' + symbol;
+                        } else {
+                            symEl.textContent = ' ' + symbol;
+                        }
+                    });
+                });
+            });
+
+            // Chatbot Logic
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+            const chatInput = document.getElementById('chatInput');
+            const sendMsg = document.getElementById('sendMsg');
+            const chatMessages = document.getElementById('chatMessages');
+            let isChatOpen = false;
+
+            if (chatbotToggle && chatbotWindow) {
+                chatbotToggle.addEventListener('click', () => {
+                    isChatOpen = !isChatOpen;
+                    chatbotWindow.classList.toggle('scale-0', !isChatOpen);
+                    chatbotWindow.classList.toggle('opacity-0', !isChatOpen);
+                });
+            }
+
+            if (closeChat) {
+                closeChat.addEventListener('click', () => {
+                    isChatOpen = false;
+                    chatbotWindow.classList.add('scale-0', 'opacity-0');
+                });
+            }
+
+            function scrollChat() {
+                if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                if (!chatInput || !chatMessages) return;
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                const userMsgEl = document.createElement('div');
+                userMsgEl.className = 'flex gap-3 max-w-[80%] ml-auto flex-row-reverse';
+                userMsgEl.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="glass p-3 rounded-xl text-white">${text}</div>
+                `;
+                chatMessages.appendChild(userMsgEl);
+                chatInput.value = '';
+                scrollChat();
+
+                setTimeout(() => {
+                    let reply = '';
+                    const q = text.toLowerCase();
+
+                    if (q.includes('website') || q.includes('web'))
+                        reply = 'We build premium, high-performance websites — custom design, e-commerce, speed optimization, security, and hosting all included. Your site will look amazing and convert visitors into customers.';
+                    else if (q.includes('marketing') || q.includes('seo') || q.includes('ads'))
+                        reply = 'Full digital marketing: SEO, Google Ads, social media management, email campaigns, and lead generation that delivers real growth and measurable results.';
+                    else if (q.includes('brand') || q.includes('logo') || q.includes('design'))
+                        reply = 'Complete branding: logo design, identity systems, print materials, video editing, and photography to make your brand unforgettable and professional.';
+                    else if (q.includes('business') || q.includes('automation') || q.includes('crm'))
+                        reply = 'Smart business solutions: CRM setup, AI chatbots, workflow automation, online booking systems, and professional email hosting to save time and scale faster.';
+                    else if (q.includes('price') || q.includes('cost') || q.includes('quote'))
+                        reply = 'Every project is custom-built — book a free consultation to get your exact quote, timeline, and personalized roadmap. We offer premium quality at competitive rates.';
+                    else if (q.includes('contact') || q.includes('call') || q.includes('email'))
+                        reply = '📞 (+237) 681 500 358 | 📧 ambebirikaldo@icloud.com — We’re available 24/7 to answer your questions.';
+                    else if (q.includes('time') || q.includes('delivery'))
+                        reply = 'We work fast! Most projects launch in 2–4 weeks, depending on complexity — always on schedule, never late.';
+                    else
+                        reply = 'Skyline Agency delivers world-class digital solutions. Book a consultation to discuss your goals — we’re here to build greatness together and help your business rise above.';
+
+                    const botMsgEl = document.createElement('div');
+                    botMsgEl.className = 'flex gap-3 max-w-[80%]';
+                    botMsgEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fa fa-robot"></i>
+                        </div>
+                        <div class="glass p-3 rounded-xl text-white">${reply}</div>
+                    `;
+                    chatMessages.appendChild(botMsgEl);
+                    scrollChat();
+                }, 800);
+            }
+
+            if (sendMsg) sendMsg.addEventListener('click', sendMessage);
+            if (chatInput) chatInput.addEventListener('keydown', e => e.key === 'Enter' && sendMessage());
+
+        });
+    </script>
+
+    <style>
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .pause { animation-play-state: paused; }
+    </style>
+
+</body>
+</html>

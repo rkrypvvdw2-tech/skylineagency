@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio | Skyline Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A2463',
+                        accent: '#0099FF',
+                        dark: '#050505',
+                        light: '#FFFFFF',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(0, 153, 255, 0.3), 0 0 40px rgba(0, 153, 255, 0.1)',
+                        'card': '0 8px 32px rgba(0, 0, 0, 0.2)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .scroll-smooth { scroll-behavior: smooth; }
+            .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+            .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+            .glass-hover { transition: all 0.4s ease; }
+            .glass-hover:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(0, 153, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 153, 255, 0.15); transform: translateY(-6px); }
+            .glow-text { background: linear-gradient(90deg, #0099FF, #40C4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            .bg-gradient-custom { background: linear-gradient(135deg, #0A2463 0%, #050505 100%); }
+            .animate-line { width: 120px; height: 4px; background: linear-gradient(90deg, #0099FF, #40C4FF); border-radius: 2px; position: relative; overflow: hidden; }
+            .animate-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255,255,255,0.3); animation: shine 2s infinite; }
+            @keyframes shine { 100% { left: 100%; } }
+            .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+            .fade-in.active { opacity: 1; transform: translateY(0); }
+            .float { animation: float 6s infinite ease-in-out; }
+            @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+            .zoom-bg { animation: zoomBg 20s infinite alternate ease-in-out; }
+            @keyframes zoomBg { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+            .glow-pulse { animation: glowPulse 3s infinite alternate; }
+            @keyframes glowPulse { 0% { box-shadow: 0 0 15px rgba(0, 153, 255, 0.2); } 100% { box-shadow: 0 0 30px rgba(0, 153, 255, 0.4); } }
+            .filter-active { background: rgba(0, 153, 255, 0.2); border-color: rgba(0, 153, 255, 0.5); color: #ffffff; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-custom text-white overflow-x-hidden scroll-smooth relative">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 opacity-20 zoom-bg">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div id="particles" class="absolute inset-0"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 bg-dark/30 backdrop-blur border-b border-accent/10">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+             <a href="index.html" class="flex items-center gap-3">
+                <img src="skyline-logo.png.jpeg" alt="Skyline Agency Logo" class="h-14">
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="font-medium hover:text-accent transition-colors">About</a>
+                <a href="services.html" class="font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="font-medium text-accent">Portfolio</a>
+                <a href="pricing.html" class="font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-5 py-2 rounded-lg transition-all">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-5 py-2 rounded-lg transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.4)] font-semibold">Get A Quote</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-3">
+                <a href="index.html" class="py-2.5 font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="py-2.5 font-medium hover:text-accent transition-colors">About</a>
+                <a href="services.html" class="py-2.5 font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="py-2.5 font-medium text-accent">Portfolio</a>
+                <a href="pricing.html" class="py-2.5 font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="py-2.5 font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="py-2.5 font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-4 py-2.5 rounded-lg text-center transition-all mt-2">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-4 py-2.5 rounded-lg text-center transition-all shadow-glow mt-1 font-semibold">Get A Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="min-h-[70vh] flex items-center relative z-10 pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 py-20 text-center fade-in active">
+            <h1 class="text-[clamp(2.8rem,6vw,5rem)] font-extrabold leading-[1.1] text-shadow mb-6">
+                Our <span class="glow-text">Portfolio</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+                Explore our best work — premium websites, powerful brands, high-performance marketing, and innovative digital solutions built for businesses across Africa and beyond.
+            </p>
+            <div class="animate-line mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- 2. Filter Navigation -->
+    <section class="py-8 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 fade-in active">
+                <button class="filter-btn filter-active glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="all">All Projects</button>
+                <button class="filter-btn glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="web">Web Development</button>
+                <button class="filter-btn glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="ecom">E-Commerce</button>
+                <button class="filter-btn glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="brand">Branding & Design</button>
+                <button class="filter-btn glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="marketing">Digital Marketing</button>
+                <button class="filter-btn glass px-6 py-2 rounded-full font-medium hover:bg-accent/20 transition-all" data-filter="automation">Automation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Portfolio Grid -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+
+                <!-- Project 1 -->
+                <div class="portfolio-item fade-in active" data-category="web brand">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate Business Website" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">Web Design</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">Global Finance Group</h3>
+                            <p class="text-gray-400 text-sm mb-4">Luxurious corporate website with advanced features, professional branding, and high-end user experience for a leading financial firm.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">Custom Design</span>
+                                <span class="text-xs glass px-2 py-1 rounded">CMS</span>
+                                <span class="text-xs glass px-2 py-1 rounded">SEO Ready</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item fade-in active" data-category="ecom web">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">E-Commerce</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">AfroMarket Online Store</h3>
+                            <p class="text-gray-400 text-sm mb-4">Complete e-commerce solution with payment integration, inventory management, shipping automation, and mobile-responsive design for African retailers.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">Payment Gateway</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Inventory</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Mobile App Ready</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item fade-in active" data-category="brand marketing">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brand Identity Design" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">Branding</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">Heritage Luxury Hotels</h3>
+                            <p class="text-gray-400 text-sm mb-4">Complete brand identity system including logo design, color palette, typography, stationery, signage, and marketing materials for a premium hotel chain.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">Logo Design</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Brand Guidelines</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Print Design</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item fade-in active" data-category="marketing web">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Digital Marketing Campaign" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">Marketing</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">TechStart Growth Campaign</h3>
+                            <p class="text-gray-400 text-sm mb-4">Full digital marketing strategy: SEO optimization, Google Ads, social media management, content creation, and lead generation that increased sales by 200% in 6 months.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">SEO</span>
+                                <span class="text-xs glass px-2 py-1 rounded">PPC Ads</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Analytics</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item fade-in active" data-category="automation web">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518432059046-99ff8c84a3b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Automation System" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">Automation</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">LogiTrack Management System</h3>
+                            <p class="text-gray-400 text-sm mb-4">Custom business automation software including CRM, inventory tracking, employee management, and automated reporting that saved 40% of operational time.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">CRM</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Workflow</span>
+                                <span class="text-xs glass px-2 py-1 rounded">API Integration</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item fade-in active" data-category="web brand">
+                    <div class="glass rounded-2xl overflow-hidden glass-hover h-full flex flex-col">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507238691740-1875a6d4e086?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Educational Platform" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-accent/80 text-white text-xs px-3 py-1 rounded-full backdrop-blur">Web Platform</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2">Africa Learning Academy</h3>
+                            <p class="text-gray-400 text-sm mb-4">Modern e-learning platform with course management, student dashboards, payment processing, and interactive learning tools built for African education.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs glass px-2 py-1 rounded">LMS</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Video Integration</span>
+                                <span class="text-xs glass px-2 py-1 rounded">Community</span>
+                            </div>
+                            <a href="#" class="text-accent font-medium text-sm flex items-center gap-2 hover:underline">
+                                View Case Study <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Why Our Work Stands Out -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Why Our Projects Succeed</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Every project we deliver follows strict quality standards, strategy, and design principles that guarantee results.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass rounded-2xl p-6 text-center glass-hover fade-in active">
+                    <div class="w-14 h-14 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-4 shadow-glow">
+                        <i class="fa fa-diamond text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Premium Quality</h3>
+                    <p class="text-gray-400 text-sm">World-class design and code, no shortcuts, every detail perfected.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center glass-hover fade-in active">
+                    <div class="w-14 h-14 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-4 shadow-glow">
+                        <i class="fa fa-line-chart text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Result Driven</h3>
+                    <p class="text-gray-400 text-sm">Built not just to look good — but to generate leads, sales, and growth.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center glass-hover fade-in active">
+                    <div class="w-14 h-14 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-4 shadow-glow">
+                        <i class="fa fa-mobile-phone text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">100% Responsive</h3>
+                    <p class="text-gray-400 text-sm">Perfect experience on mobile, tablet, laptop, and desktop screens.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center glass-hover fade-in active">
+                    <div class="w-14 h-14 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-4 shadow-glow">
+                        <i class="fa fa-shield text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Secure & Fast</h3>
+                    <p class="text-gray-400 text-sm">Optimized speed, security, and reliability built into every project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Client Testimonials -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">What Clients Say About Our Work</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Elena Roberts</h4>
+                            <p class="text-accent text-sm">CEO, TechStart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Skyline Agency delivered exactly what they promised — and more. Our website is beautiful, fast, and has already increased our inquiries by 150%."
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Michael Okafor</h4>
+                            <p class="text-accent text-sm">Founder, AfroRetail</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "The e-commerce platform Skyline built for us is world-class. Sales have doubled since launch, and the support team is always there when we need them."
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Amara Diop</h4>
+                            <p class="text-accent text-sm">Director, CreativeHub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Their branding work completely transformed our company image. We now look like the premium global brand we want to be. Highly recommended."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Call To Action -->
+    <section class="py-24 relative z-10 bg-dark/60 border-y border-accent/20">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 text-center fade-in active relative z-10">
+            <h2 class="text-[clamp(2rem,4vw,3.2rem)] font-bold mb-6 text-shadow">
+                Ready To Create Your Success Story?
+            </h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+                Join our list of successful clients. Let’s build a premium digital solution that elevates your business and sets you apart from competitors.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="book-now.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1">
+                    Start Your Project
+                </a>
+                <a href="contact.html" class="glass hover:bg-accent/10 text-white border border-accent/30 px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-glow hover:-translate-y-1">
+                    Discuss Your Idea
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="bg-dark/80 relative z-10 py-16 border-t border-accent/20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-5 gap-10 mb-10">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-3">
+                        <span class="text-white">SKYLINE</span>
+                        <span class="glow-text">AGENCY</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm max-w-md">Premium digital agency building powerful brands, high-performance websites, and growth-driven marketing solutions. We help businesses rise above.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-accent transition-colors">Portfolio</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Digital Marketing</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Branding</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Automation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa fa-phone"></i> (+237) 681 500 358</li>
+                        <li class="flex items-center gap-2"><i class="fa fa-envelope"></i> ambebirikaldo@icloud.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 Skyline Agency. All rights reserved. Premium Digital Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chatbotToggle" class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent/20 backdrop-blur text-accent flex items-center justify-center shadow-glow cursor-pointer hover:scale-110 transition-all">
+        <i class="fa fa-comments text-2xl"></i>
+    </div>
+
+    <div id="chatbotWindow" class="fixed bottom-24 right-6 w-[90vw] max-w-[380px] h-[500px] glass rounded-2xl shadow-glow z-50 overflow-hidden transform scale-0 opacity-0 transition-all origin-bottom-right">
+        <div class="bg-accent/20 backdrop-blur text-white p-4 flex justify-between items-center border-b border-accent/30">
+            <div class="font-semibold flex items-center gap-2">
+                <i class="fa fa-robot"></i> Skyline Assistant
+            </div>
+            <button id="closeChat" class="text-white/70 hover:text-white">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="h-[calc(100%-110px)] p-4 overflow-y-auto bg-dark/40 space-y-3">
+            <div class="flex gap-3 max-w-[80%]">
+                <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fa fa-robot"></i>
+                </div>
+                <div class="glass p-3 rounded-xl text-white">
+                    Hello! 👋 Welcome to Skyline Agency. How can we help you build your digital success today?
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-accent/20 bg-dark/40 flex gap-2">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-2.5 glass rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent text-white">
+            <button id="sendMsg" class="w-10 h-10 rounded-lg bg-accent/20 hover:bg-accent/40 text-accent flex items-center justify-center transition-all">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.innerHTML = mobileMenu.classList.contains('hidden') ? '<i class="fa fa-bars"></i>' : '<i class="fa fa-times"></i>';
+                });
+            }
+
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 50) {
+                    navbar.classList.add('bg-dark/60', 'shadow-glow');
+                    navbar.classList.remove('bg-dark/30');
+                } else {
+                    navbar.classList.remove('bg-dark/60', 'shadow-glow');
+                    navbar.classList.add('bg-dark/30');
+                }
+            });
+
+            // Particles Background
+            function createParticles() {
+                const container = document.getElementById('particles');
+                for(let i=0; i<40; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'absolute w-1 h-1 bg-accent/40 rounded-full';
+                    p.style.left = `${Math.random()*100}%`;
+                    p.style.top = `${Math.random()*100}%`;
+                    p.style.animation = `float ${5 + Math.random()*8}s infinite ease-in-out`;
+                    container.appendChild(p);
+                }
+            }
+            createParticles();
+
+            // Fade-in Animation on Scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Portfolio Filter Logic
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('filter-active'));
+                    // Add active class to clicked button
+                    button.classList.add('filter-active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all') {
+                            item.style.display = 'block';
+                            setTimeout(() => { item.classList.add('active'); }, 100);
+                        } else {
+                            const categories = item.getAttribute('data-category').split(' ');
+                            if (categories.includes(filter)) {
+                                item.style.display = 'block';
+                                setTimeout(() => { item.classList.add('active'); }, 100);
+                            } else {
+                                item.classList.remove('active');
+                                setTimeout(() => { item.style.display = 'none'; }, 500);
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Chatbot Logic
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+            const chatInput = document.getElementById('chatInput');
+            const sendMsg = document.getElementById('sendMsg');
+            const chatMessages = document.getElementById('chatMessages');
+            let isChatOpen = false;
+
+            if (chatbotToggle && chatbotWindow) {
+                chatbotToggle.addEventListener('click', () => {
+                    isChatOpen = !isChatOpen;
+                    chatbotWindow.classList.toggle('scale-0', !isChatOpen);
+                    chatbotWindow.classList.toggle('opacity-0', !isChatOpen);
+                });
+            }
+
+            if (closeChat) {
+                closeChat.addEventListener('click', () => {
+                    isChatOpen = false;
+                    chatbotWindow.classList.add('scale-0', 'opacity-0');
+                });
+            }
+
+            function scrollChat() {
+                if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                if (!chatInput || !chatMessages) return;
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                const userMsgEl = document.createElement('div');
+                userMsgEl.className = 'flex gap-3 max-w-[80%] ml-auto flex-row-reverse';
+                userMsgEl.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="glass p-3 rounded-xl text-white">${text}</div>
+                `;
+                chatMessages.appendChild(userMsgEl);
+                chatInput.value = '';
+                scrollChat();
+
+                setTimeout(() => {
+                    let reply = '';
+                    const q = text.toLowerCase();
+
+                    if (q.includes('website') || q.includes('web'))
+                        reply = 'We build premium, high-performance websites — custom design, e-commerce, speed optimization, security, and hosting all included. Your site will look amazing and convert visitors into customers.';
+                    else if (q.includes('marketing') || q.includes('seo') || q.includes('ads'))
+                        reply = 'Full digital marketing: SEO, Google Ads, social media management, email campaigns, and lead generation that delivers real growth and measurable results.';
+                    else if (q.includes('brand') || q.includes('logo') || q.includes('design'))
+                        reply = 'Complete branding: logo design, identity systems, print materials, video editing, and photography to make your brand unforgettable and professional.';
+                    else if (q.includes('business') || q.includes('automation') || q.includes('crm'))
+                        reply = 'Smart business solutions: CRM setup, AI chatbots, workflow automation, online booking systems, and professional email hosting to save time and scale faster.';
+                    else if (q.includes('price') || q.includes('cost') || q.includes('quote'))
+                        reply = 'Every project is custom-built — book a free consultation to get your exact quote, timeline, and personalized roadmap. We offer premium quality at competitive rates.';
+                    else if (q.includes('contact') || q.includes('call') || q.includes('email'))
+                        reply = '📞 (+237) 681 500 358 | 📧 ambebirikaldo@icloud.com — We’re available 24/7 to answer your questions.';
+                    else if (q.includes('time') || q.includes('delivery'))
+                        reply = 'We work fast! Most projects launch in 2–4 weeks, depending on complexity — always on schedule, never late.';
+                    else
+                        reply = 'Skyline Agency delivers world-class digital solutions. Book a consultation to discuss your goals — we’re here to build greatness together and help your business rise above.';
+
+                    const botMsgEl = document.createElement('div');
+                    botMsgEl.className = 'flex gap-3 max-w-[80%]';
+                    botMsgEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fa fa-robot"></i>
+                        </div>
+                        <div class="glass p-3 rounded-xl text-white">${reply}</div>
+                    `;
+                    chatMessages.appendChild(botMsgEl);
+                    scrollChat();
+                }, 800);
+            }
+
+            if (sendMsg) sendMsg.addEventListener('click', sendMessage);
+            if (chatInput) chatInput.addEventListener('keydown', e => e.key === 'Enter' && sendMessage());
+
+        });
+    </script>
+
+    <style>
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .pause { animation-play-state: paused; }
+    </style>
+
+</body>
+</html>

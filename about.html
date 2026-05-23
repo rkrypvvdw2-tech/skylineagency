@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Skyline Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A2463',
+                        accent: '#0099FF',
+                        dark: '#050505',
+                        light: '#FFFFFF',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(0, 153, 255, 0.3), 0 0 40px rgba(0, 153, 255, 0.1)',
+                        'card': '0 8px 32px rgba(0, 0, 0, 0.2)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .scroll-smooth { scroll-behavior: smooth; }
+            .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+            .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+            .glass-hover { transition: all 0.4s ease; }
+            .glass-hover:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(0, 153, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 153, 255, 0.15); transform: translateY(-6px); }
+            .glow-text { background: linear-gradient(90deg, #0099FF, #40C4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            .bg-gradient-custom { background: linear-gradient(135deg, #0A2463 0%, #050505 100%); }
+            .animate-line { width: 120px; height: 4px; background: linear-gradient(90deg, #0099FF, #40C4FF); border-radius: 2px; position: relative; overflow: hidden; }
+            .animate-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255,255,255,0.3); animation: shine 2s infinite; }
+            @keyframes shine { 100% { left: 100%; } }
+            .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+            .fade-in.active { opacity: 1; transform: translateY(0); }
+            .float { animation: float 6s infinite ease-in-out; }
+            @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+            .zoom-bg { animation: zoomBg 20s infinite alternate ease-in-out; }
+            @keyframes zoomBg { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+            .glow-pulse { animation: glowPulse 3s infinite alternate; }
+            @keyframes glowPulse { 0% { box-shadow: 0 0 15px rgba(0, 153, 255, 0.2); } 100% { box-shadow: 0 0 30px rgba(0, 153, 255, 0.4); } }
+            .timeline-line { position: relative; }
+            .timeline-line::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #0099FF, transparent); transform: translateX(-50%); }
+            @media (max-width: 768px) { .timeline-line::before { left: 20px; } }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-custom text-white overflow-x-hidden scroll-smooth relative">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 opacity-20 zoom-bg">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div id="particles" class="absolute inset-0"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 bg-dark/30 backdrop-blur border-b border-accent/10">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="skyline-logo.png.jpeg" alt="Skyline Agency Logo" class="h-14">
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="font-medium text-accent">About</a>
+                <a href="services.html" class="font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-5 py-2 rounded-lg transition-all">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-5 py-2 rounded-lg transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.4)] font-semibold">Get A Quote</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-3">
+                <a href="index.html" class="py-2.5 font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="py-2.5 font-medium text-accent">About</a>
+                <a href="services.html" class="py-2.5 font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="py-2.5 font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="py-2.5 font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="py-2.5 font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="py-2.5 font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-4 py-2.5 rounded-lg text-center transition-all mt-2">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-4 py-2.5 rounded-lg text-center transition-all shadow-glow mt-1 font-semibold">Get A Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="min-h-[85vh] flex items-center relative z-10 pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 py-20 text-center fade-in active">
+            <h1 class="text-[clamp(2.8rem,6vw,5rem)] font-extrabold leading-[1.1] text-shadow mb-6">
+                Building The Future Of<br><span class="glow-text">Digital Business</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-10">
+                Skyline Agency helps businesses grow through premium websites, branding, marketing, and automation solutions.
+            </p>
+            <a href="contact.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1 inline-block">
+                Work With Us
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. Company Introduction -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Who We Are</h2>
+                <div class="animate-line mx-auto mb-8"></div>
+                <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-4">
+                    Skyline Agency is a modern digital solutions company focused on helping businesses establish powerful online identities through innovative websites, branding, digital marketing, and automation systems.
+                </p>
+                <p class="text-gray-300 text-lg md:text-xl leading-relaxed">
+                    We combine creativity, strategy, and technology to deliver high-performance digital experiences that help businesses grow faster and stand out online.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Founder Story -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative fade-in active">
+                    <div class="glass rounded-2xl p-4 shadow-glow">
+                        <!-- Replace with your actual founder photo -->
+                        <img src="founder-photo.jpg" alt="Ambebi Marc Rikado - Founder" class="rounded-xl w-full">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-accent/20 rounded-full blur-xl"></div>
+                </div>
+
+                <div class="fade-in active">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Our Story</h2>
+                    <div class="animate-line mb-6"></div>
+                    <h3 class="text-xl font-semibold text-accent mb-3">Founded by Ambebi .M. Rikado</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        Skyline Agency was created with the vision of building a world-class African digital company capable of competing globally.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        Starting from a passion for technology, branding, and innovation, the company aims to help businesses transition into the digital future while creating opportunities for young creatives and developers.
+                    </p>
+                    <blockquote class="glass p-4 rounded-lg border-l-4 border-accent italic text-gray-200">
+                        "Our ambition is to elevate African businesses on the global stage through digital excellence."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Mission & Vision -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Mission & Vision</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Mission -->
+                <div class="glass rounded-2xl p-8 text-center glass-hover fade-in active">
+                    <div class="w-16 h-16 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-5 shadow-glow">
+                        <i class="fa fa-bullseye text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Our Mission</h3>
+                    <p class="text-gray-300">
+                        To help businesses grow online through premium digital solutions.
+                    </p>
+                </div>
+
+                <!-- Vision -->
+                <div class="glass rounded-2xl p-8 text-center glass-hover fade-in active">
+                    <div class="w-16 h-16 rounded-full bg-accent/20 text-accent flex items-center justify-center mx-auto mb-5 shadow-glow">
+                        <i class="fa fa-eye text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Our Vision</h3>
+                    <p class="text-gray-300">
+                        To become one of Africa’s leading digital innovation companies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. What Makes Us Different -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Why Choose Skyline Agency?</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    We don’t just build websites — we build long-term success. Here is what makes us stand out:
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-paint-brush text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Premium Modern Designs</h3>
+                    <p class="text-gray-400 text-sm">Luxurious, futuristic, and high-end aesthetics that impress instantly.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-bolt text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-400 text-sm">On-time delivery without compromising quality — always.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-line-chart text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Growth-Focused Strategy</h3>
+                    <p class="text-gray-400 text-sm">Every solution is built to generate results, leads, and revenue.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-headphones text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Reliable Support</h3>
+                    <p class="text-gray-400 text-sm">Always here for you — before, during, and after every project.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-dollar text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Affordable Premium Pricing</h3>
+                    <p class="text-gray-400 text-sm">World-class quality at rates that make sense for your business.</p>
+                </div>
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <i class="fa fa-robot text-accent text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">AI & Automation</h3>
+                    <p class="text-gray-400 text-sm">Smart systems that save you time and scale your operations automatically.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 fade-in active">
+                <div class="glass rounded-2xl p-6 max-w-2xl mx-auto">
+                    <h3 class="text-lg font-semibold mb-2">Long-Term Business Partnership</h3>
+                    <p class="text-gray-300">We grow when you grow — we are not just a service provider, we are your partner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Company Statistics -->
+    <section class="py-16 relative z-10 bg-dark/60 border-y border-accent/20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="fade-in active">
+                    <div class="text-[clamp(2rem,4vw,3rem)] font-bold glow-text mb-1">100+</div>
+                    <div class="text-gray-300">Projects Completed</div>
+                </div>
+                <div class="fade-in active">
+                    <div class="text-[clamp(2rem,4vw,3rem)] font-bold glow-text mb-1">50+</div>
+                    <div class="text-gray-300">Happy Clients</div>
+                </div>
+                <div class="fade-in active">
+                    <div class="text-[clamp(2rem,4vw,3rem)] font-bold glow-text mb-1">24/7</div>
+                    <div class="text-gray-300">Support Available</div>
+                </div>
+                <div class="fade-in active">
+                    <div class="text-[clamp(2rem,4vw,3rem)] font-bold glow-text mb-1">99%</div>
+                    <div class="text-gray-300">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Our Process -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Our Process</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    A clear, structured journey from idea to launch and growth.
+                </p>
+            </div>
+
+            <div class="timeline-line max-w-4xl mx-auto space-y-12">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 fade-in active">
+                    <div class="md:w-1/2 text-right md:pr-8 order-2 md:order-1">
+                        <h3 class="text-xl font-bold text-accent mb-2">Step 1: Consultation</h3>
+                        <p class="text-gray-300">We listen to your goals, understand your business, and define exactly what you need to succeed.</p>
+                    </div>
+                    <div class="relative z-10 order-1 md:order-2">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center shadow-glow">1</div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-8 order-3"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 fade-in active">
+                    <div class="md:w-1/2 md:pr-8"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center shadow-glow">2</div>
+                    </div>
+                    <div class="md:w-1/2 text-left md:pl-8">
+                        <h3 class="text-xl font-bold text-accent mb-2">Step 2: Strategy & Planning</h3>
+                        <p class="text-gray-300">We create a detailed roadmap, design concepts, and a clear plan to deliver results.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 fade-in active">
+                    <div class="md:w-1/2 text-right md:pr-8 order-2 md:order-1">
+                        <h3 class="text-xl font-bold text-accent mb-2">Step 3: Design & Development</h3>
+                        <p class="text-gray-300">Our team builds your solution with precision, quality, and the latest technology.</p>
+                    </div>
+                    <div class="relative z-10 order-1 md:order-2">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center shadow-glow">3</div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-8 order-3"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 fade-in active">
+                    <div class="md:w-1/2 md:pr-8"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center shadow-glow">4</div>
+                    </div>
+                    <div class="md:w-1/2 text-left md:pl-8">
+                        <h3 class="text-xl font-bold text-accent mb-2">Step 4: Launch & Growth</h3>
+                        <p class="text-gray-300">We launch your project, monitor performance, and help you scale even further.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Team Section -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Our Team</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Our growing team of creatives, developers, and strategists dedicated to your success.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Founder -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <img src="founder-photo.jpg" alt="Ambebi Marc Rikado" class="w-full h-64 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-bold">Ambebi.M.Rikado</h3>
+                        <p class="text-accent text-sm">Founder & Lead Strategist</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Lead Designer" class="w-full h-64 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-bold">Sarah M.</h3>
+                        <p class="text-accent text-sm">Creative Director</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Developer" class="w-full h-64 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-bold">David L.</h3>
+                        <p class="text-accent text-sm">Lead Developer</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="glass rounded-2xl overflow-hidden glass-hover fade-in active">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Marketing Specialist" class="w-full h-64 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="text-lg font-bold">Grace K.</h3>
+                        <p class="text-accent text-sm">Marketing Strategist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Core Values -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">Our Core Values</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-lightbulb-o text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Innovation</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-diamond text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Excellence</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-shield text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Integrity</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-palette text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Creativity</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-handshake-o text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Reliability</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center glass-hover fade-in active">
+                    <i class="fa fa-line-chart text-accent text-2xl mb-2"></i>
+                    <div class="font-semibold">Growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Testimonials -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in active">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold mb-4">What Our Clients Say</h2>
+                <div class="animate-line mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Elena Roberts</h4>
+                            <p class="text-accent text-sm">CEO, TechStart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Skyline Agency completely transformed our online presence. Their attention to detail and modern designs are world-class."
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Michael Okafor</h4>
+                            <p class="text-accent text-sm">Founder, AfroRetail</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Professional, fast, and results-driven. They didn’t just build a website — they built a business tool that helps us sell more every day."
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 glass-hover fade-in active">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Amara Diop</h4>
+                            <p class="text-accent text-sm">Director, CreativeHub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "The best agency we have worked with. Their understanding of African markets combined with global standards is unique and powerful."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Call To Action -->
+    <section class="py-24 relative z-10 bg-dark/60 border-y border-accent/20">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 text-center fade-in active relative z-10">
+            <h2 class="text-[clamp(2rem,4vw,3.2rem)] font-bold mb-6 text-shadow">
+                Ready To Grow Your Business?
+            </h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+                Let’s build something extraordinary together. Elevate your brand, dominate your market, and grow faster with Skyline Agency.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="book-now.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1">
+                    Get A Quote
+                </a>
+                <a href="contact.html" class="glass hover:bg-accent/10 text-white border border-accent/30 px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-glow hover:-translate-y-1">
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Footer -->
+    <footer class="bg-dark/80 relative z-10 py-16 border-t border-accent/20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-5 gap-10 mb-10">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-3">
+                        <span class="text-white">SKYLINE</span>
+                        <span class="glow-text">AGENCY</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm max-w-md">Premium digital agency building powerful brands, high-performance websites, and growth-driven marketing solutions. We help businesses rise above.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-accent transition-colors">Portfolio</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Digital Marketing</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Branding</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Automation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa fa-phone"></i> (+237) 681 500 358</li>
+                        <li class="flex items-center gap-2"><i class="fa fa-envelope"></i> ambebirikaldo@icloud.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 Skyline Agency. All rights reserved. Premium Digital Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chatbotToggle" class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent/20 backdrop-blur text-accent flex items-center justify-center shadow-glow cursor-pointer hover:scale-110 transition-all">
+        <i class="fa fa-comments text-2xl"></i>
+    </div>
+
+    <div id="chatbotWindow" class="fixed bottom-24 right-6 w-[90vw] max-w-[380px] h-[500px] glass rounded-2xl shadow-glow z-50 overflow-hidden transform scale-0 opacity-0 transition-all origin-bottom-right">
+        <div class="bg-accent/20 backdrop-blur text-white p-4 flex justify-between items-center border-b border-accent/30">
+            <div class="font-semibold flex items-center gap-2">
+                <i class="fa fa-robot"></i> Skyline Assistant
+            </div>
+            <button id="closeChat" class="text-white/70 hover:text-white">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="h-[calc(100%-110px)] p-4 overflow-y-auto bg-dark/40 space-y-3">
+            <div class="flex gap-3 max-w-[80%]">
+                <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fa fa-robot"></i>
+                </div>
+                <div class="glass p-3 rounded-xl text-white">
+                    Hello! 👋 Welcome to Skyline Agency. How can we help you build your digital success today?
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-accent/20 bg-dark/40 flex gap-2">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-2.5 glass rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent text-white">
+            <button id="sendMsg" class="w-10 h-10 rounded-lg bg-accent/20 hover:bg-accent/40 text-accent flex items-center justify-center transition-all">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.innerHTML = mobileMenu.classList.contains('hidden') ? '<i class="fa fa-bars"></i>' : '<i class="fa fa-times"></i>';
+                });
+            }
+
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 50) {
+                    navbar.classList.add('bg-dark/60', 'shadow-glow');
+                    navbar.classList.remove('bg-dark/30');
+                } else {
+                    navbar.classList.remove('bg-dark/60', 'shadow-glow');
+                    navbar.classList.add('bg-dark/30');
+                }
+            });
+
+            // Particles Background
+            function createParticles() {
+                const container = document.getElementById('particles');
+                for(let i=0; i<40; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'absolute w-1 h-1 bg-accent/40 rounded-full';
+                    p.style.left = `${Math.random()*100}%`;
+                    p.style.top = `${Math.random()*100}%`;
+                    p.style.animation = `float ${5 + Math.random()*8}s infinite ease-in-out`;
+                    container.appendChild(p);
+                }
+            }
+            createParticles();
+
+            // Fade-in Animation on Scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Chatbot Logic
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const closeChat = document.getElementById('closeChat');
+            const chatInput = document.getElementById('chatInput');
+            const sendMsg = document.getElementById('sendMsg');
+            const chatMessages = document.getElementById('chatMessages');
+            let isChatOpen = false;
+
+            if (chatbotToggle && chatbotWindow) {
+                chatbotToggle.addEventListener('click', () => {
+                    isChatOpen = !isChatOpen;
+                    chatbotWindow.classList.toggle('scale-0', !isChatOpen);
+                    chatbotWindow.classList.toggle('opacity-0', !isChatOpen);
+                });
+            }
+
+            if (closeChat) {
+                closeChat.addEventListener('click', () => {
+                    isChatOpen = false;
+                    chatbotWindow.classList.add('scale-0', 'opacity-0');
+                });
+            }
+
+            function scrollChat() {
+                if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                if (!chatInput || !chatMessages) return;
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                const userMsgEl = document.createElement('div');
+                userMsgEl.className = 'flex gap-3 max-w-[80%] ml-auto flex-row-reverse';
+                userMsgEl.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="glass p-3 rounded-xl text-white">${text}</div>
+                `;
+                chatMessages.appendChild(userMsgEl);
+                chatInput.value = '';
+                scrollChat();
+
+                setTimeout(() => {
+                    let reply = '';
+                    const q = text.toLowerCase();
+
+                    if (q.includes('website') || q.includes('web'))
+                        reply = 'We build premium, high-performance websites — custom design, e-commerce, speed optimization, security, and hosting all included. Your site will look amazing and convert visitors into customers.';
+                    else if (q.includes('marketing') || q.includes('seo') || q.includes('ads'))
+                        reply = 'Full digital marketing: SEO, Google Ads, social media management, email campaigns, and lead generation that delivers real growth and measurable results.';
+                    else if (q.includes('brand') || q.includes('logo') || q.includes('design'))
+                        reply = 'Complete branding: logo design, identity systems, print materials, video editing, and photography to make your brand unforgettable and professional.';
+                    else if (q.includes('business') || q.includes('automation') || q.includes('crm'))
+                        reply = 'Smart business solutions: CRM setup, AI chatbots, workflow automation, online booking systems, and professional email hosting to save time and scale faster.';
+                    else if (q.includes('price') || q.includes('cost') || q.includes('quote'))
+                        reply = 'Every project is custom-built — book a free consultation to get your exact quote, timeline, and personalized roadmap. We offer premium quality at competitive rates.';
+                    else if (q.includes('contact') || q.includes('call') || q.includes('email'))
+                        reply = '📞 (+237) 681 500 358 | 📧 ambebirikaldo@icloud.com — We’re available 24/7 to answer your questions.';
+                    else if (q.includes('time') || q.includes('delivery'))
+                        reply = 'We work fast! Most projects launch in 2–4 weeks, depending on complexity — always on schedule, never late.';
+                    else
+                        reply = 'Skyline Agency delivers world-class digital solutions. Book a consultation to discuss your goals — we’re here to build greatness together and help your business rise above.';
+
+                    const botMsgEl = document.createElement('div');
+                    botMsgEl.className = 'flex gap-3 max-w-[80%]';
+                    botMsgEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fa fa-robot"></i>
+                        </div>
+                        <div<div class="glass p-3 rounded-xl text-white">${reply}</div>
+                    `;
+                    chatMessages.appendChild(botMsgEl);
+                    scrollChat();
+                }, 800);
+            }
+
+            if (sendMsg) sendMsg.addEventListener('click', sendMessage);
+            if (chatInput) chatInput.addEventListener('keydown', e => e.key === 'Enter' && sendMessage());
+
+        });
+    </script>
+
+    <style>
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .pause { animation-play-state: paused; }
+    </style>
+
+</body>
+</html>

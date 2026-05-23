@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Skyline Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A2463', // Navy Blue
+                        accent: '#0099FF',  // Electric Blue
+                        dark: '#050505',    // Deep Black
+                        light: '#FFFFFF',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(0, 153, 255, 0.3), 0 0 40px rgba(0, 153, 255, 0.1)',
+                        'card': '0 8px 32px rgba(0, 0, 0, 0.2)',
+                    },
+                    backdropFilter: {
+                        'none': 'none',
+                        'blur': 'blur(16px)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .scroll-smooth { scroll-behavior: smooth; }
+            .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+            .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+            .glass-hover { transition: all 0.4s ease; }
+            .glass-hover:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(0, 153, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 153, 255, 0.15); transform: translateY(-6px); }
+            .glow-text { background: linear-gradient(90deg, #0099FF, #40C4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            .bg-gradient-custom { background: linear-gradient(135deg, #0A2463 0%, #050505 100%); }
+            .animate-line { width: 120px; height: 4px; background: linear-gradient(90deg, #0099FF, #40C4FF); border-radius: 2px; position: relative; overflow: hidden; }
+            .animate-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255,255,255,0.3); animation: shine 2s infinite; }
+            @keyframes shine { 100% { left: 100%; } }
+            .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+            .fade-in.active { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-custom text-light overflow-x-hidden scroll-smooth relative">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <!-- Skyscraper Background -->
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Skyline Background" class="w-full h-full object-cover">
+        </div>
+        <!-- Particles -->
+        <div id="particles" class="absolute inset-0"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 bg-dark/40 backdrop-blur border-b border-accent/10">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="skyline-logo.png.jpeg" alt="Skyline Agency Logo" class="h-14">
+            </a>
+            
+            <!-- Desktop Menu -->
+             <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="font-medium text-accent">About</a>
+                <a href="services.html" class="font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-5 py-2 rounded-lg transition-all">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-5 py-2 rounded-lg transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.4)] font-semibold">Get A Quote</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-light text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-3">
+                <a href="index.html" class="py-2.5 font-medium hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="py-2.5 font-medium text-accent">About</a>
+                <a href="services.html" class="py-2.5 font-medium hover:text-accent transition-colors">Services</a>
+                <a href="portfolio.html" class="py-2.5 font-medium hover:text-accent transition-colors">Portfolio</a>
+                <a href="pricing.html" class="py-2.5 font-medium hover:text-accent transition-colors">Pricing</a>
+                <a href="blog.html" class="py-2.5 font-medium hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="py-2.5 font-medium hover:text-accent transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-4 py-2.5 rounded-lg text-center transition-all mt-2">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-4 py-2.5 rounded-lg text-center transition-all shadow-glow mt-1 font-semibold">Get A Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-[70vh] flex items-center relative z-10 pt-20">
+        <div class="container mx-auto px-6 py-20">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <h1 class="text-[clamp(2.8rem,6vw,4.5rem)] font-extrabold leading-tight text-shadow">
+                    Our <span class="glow-text">Services</span>
+                </h1>
+                <div class="animate-line mx-auto my-6"></div>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                    We provide premium digital solutions designed to help businesses grow online, attract customers, and scale faster.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Solutions -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 fade-in">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-accent mb-4">Website Solutions</h2>
+                <p class="text-gray-300 max-w-3xl">High-performance websites that look stunning, load fast, and convert visitors into loyal customers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-code text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Website Design & Development</h3>
+                    <p class="text-gray-400 text-sm">Modern, responsive websites built to represent your brand and drive results.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-shopping-cart text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">E-Commerce Websites</h3>
+                    <p class="text-gray-400 text-sm">Powerful online stores with secure payment, inventory management & growth tools.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-file-text-o text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Landing Pages</h3>
+                    <p class="text-gray-400 text-sm">High-converting landing pages designed for ads, campaigns, and lead generation.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-refresh text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Website Redesign</h3>
+                    <p class="text-gray-400 text-sm">Give your website a fresh, modern look with better speed, UX, and performance.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-cog text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Website Maintenance</h3>
+                    <p class="text-gray-400 text-sm">Ongoing updates, content changes, security patches, and technical support.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-tachometer text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Speed Optimization</h3>
+                    <p class="text-gray-400 text-sm">Optimize your website for faster load times, better SEO, and higher conversions.</p>
+                </div>
+                <!-- Card 7 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-shield text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Website Security</h3>
+                    <p class="text-gray-400 text-sm">Full protection, SSL, malware scans, firewalls, and regular backups.</p>
+                </div>
+                <!-- Card 8 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-globe text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Domain & Hosting Setup</h3>
+                    <p class="text-gray-400 text-sm">Reliable hosting & domain management to keep your site fast, secure, and online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Marketing -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 fade-in">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-accent mb-4">Digital Marketing</h2>
+                <p class="text-gray-300 max-w-3xl">Strategic marketing that drives targeted traffic, generates qualified leads, and increases sales.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-instagram text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Social Media Management</h3>
+                    <p class="text-gray-400 text-sm">Grow your brand, engage audiences, and drive sales across all major platforms.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-search text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">SEO Optimization</h3>
+                    <p class="text-gray-400 text-sm">Rank higher on Google, get organic traffic, and dominate your local market.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-google text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Google Ads</h3>
+                    <p class="text-gray-400 text-sm">Highly targeted ads that put your business at the top of search results instantly.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-facebook text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Facebook & Instagram Ads</h3>
+                    <p class="text-gray-400 text-sm">Visual ad campaigns that reach exact audiences and deliver real results & leads.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-envelope text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Email Marketing</h3>
+                    <p class="text-gray-400 text-sm">Automated campaigns that nurture leads, build loyalty, and boost repeat sales.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-bullseye text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Lead Generation</h3>
+                    <p class="text-gray-400 text-sm">Capture, qualify, and convert high-quality leads that grow your business fast.</p>
+                </div>
+                <!-- Card 7 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-pencil text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Content Creation</h3>
+                    <p class="text-gray-400 text-sm">Engaging posts, videos, blogs, and visuals that connect with your audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branding & Design -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 fade-in">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-accent mb-4">Branding & Design</h2>
+                <p class="text-gray-300 max-w-3xl">Build a powerful, memorable brand identity that stands out and builds trust.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-paint-brush text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Logo Design</h3>
+                    <p class="text-gray-400 text-sm">Unique, professional logos that define your identity and leave a lasting impression.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-id-card text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Brand Identity</h3>
+                    <p class="text-gray-400 text-sm">Complete visual system: colors, typography, guidelines, and brand assets.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-file-image-o text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Flyers & Business Cards</h3>
+                    <p class="text-gray-400 text-sm">High-quality print & digital materials that look premium and professional.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-video-camera text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Video Editing</h3>
+                    <p class="text-gray-400 text-sm">Cinematic, engaging video content for social media, ads, and presentations.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-camera text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Product Photography</h3>
+                    <p class="text-gray-400 text-sm">High-end photography that showcases your products beautifully and boosts sales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Solutions -->
+    <section class="py-20 relative z-10 bg-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 fade-in">
+                <h2 class="text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-accent mb-4">Business Solutions</h2>
+                <p class="text-gray-300 max-w-3xl">Smart systems and automation to streamline operations and scale efficiently.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-cubes text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">CRM Setup</h3>
+                    <p class="text-gray-400 text-sm">Organize leads, track customers, and manage relationships in one powerful platform.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-android text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">AI Chatbot Integration</h3>
+                    <p class="text-gray-400 text-sm">24/7 automated support, lead capture, and engagement on your website.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-cogs text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Automation Systems</h3>
+                    <p class="text-gray-400 text-sm">Automate workflows, emails, tasks, and processes to save time and reduce errors.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-calendar-check-o text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Online Booking Systems</h3>
+                    <p class="text-gray-400 text-sm">Easy, secure scheduling so clients can book appointments or services instantly.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass rounded-2xl p-6 glass-hover fade-in">
+                    <i class="fa fa-envelope-o text-accent text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Business Email Setup</h3>
+                    <p class="text-gray-400 text-sm">Professional, secure email hosting with your domain — trusted and reliable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-24 relative z-10 bg-dark/60 border-y border-accent/20">
+        <div class="container mx-auto px-6 text-center fade-in">
+            <h2 class="text-[clamp(2rem,4vw,3.2rem)] font-bold mb-6 text-shadow">
+                Let’s Build Something <span class="glow-text">Amazing Together</span>
+            </h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+                Ready to take your business to the next level? Let’s discuss your vision and create something extraordinary.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="book-now.html" class="bg-accent hover:bg-accent/90 text-white px-10 py-4 rounded-lg font-semibold transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.5)] hover:-translate-y-1">
+                    Get A Free Quote
+                </a>
+                <a href="book-now.html" class="glass hover:bg-accent/10 text-light border border-accent/30 px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-glow hover:-translate-y-1">
+                    Book A Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark/80 relative z-10 py-16 border-t border-accent/20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <img src="skyline-logo.png.jpeg" alt="Skyline Agency Logo" class="h-14 mb-4">
+                    <p class="text-gray-400 text-sm">Premium digital agency building powerful brands and high-performance digital solutions.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-accent transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa fa-phone"></i> (+237) 681 500 358</li>
+                        <li class="flex items-center gap-2"><i class="fa fa-envelope"></i> ambebirikaldo@icloud.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-accent">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 Skyline Agency. All rights reserved. Premium Digital Solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chatbotToggle" class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent/20 backdrop-blur text-accent flex items-center justify-center shadow-glow cursor-pointer hover:scale-110 transition-all">
+        <i class="fa fa-comments text-2xl"></i>
+    </div>
+
+    <div id="chatbotWindow" class="fixed bottom-24 right-6 w-[90vw] max-w-[380px] h-[500px] glass rounded-2xl shadow-glow z-50 overflow-hidden transform scale-0 opacity-0 transition-all origin-bottom-right">
+        <div class="bg-accent/20 backdrop-blur text-white p-4 flex justify-between items-center border-b border-accent/30">
+            <div class="font-semibold flex items-center gap-2">
+                <i class="fa fa-robot"></i> Skyline Assistant
+            </div>
+            <button id="closeChat" class="text-white/70 hover:text-white">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="h-[calc(100%-110px)] p-4 overflow-y-auto bg-dark/40 space-y-3">
+            <div class="flex gap-3 max-w-[80%]">
+                <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fa fa-robot"></i>
+                </div>
+                <div class="glass p-3 rounded-xl">
+                    Hello! 👋 Ask me anything about our premium services or how we can help you grow.
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-accent/20 bg-dark/40 flex gap-2">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-2.5 glass rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent text-light">
+            <button id="sendMsg" class="w-10 h-10 rounded-lg bg-accent/20 hover:bg-accent/40 text-accent flex items-center justify-center transition-all">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') ? '<i class="fa fa-bars"></i>' : '<i class="fa fa-times"></i>';
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Particles Background
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i=0; i<40; i++) {
+                const p = document.createElement('div');
+                p.className = 'absolute w-1 h-1 bg-accent/40 rounded-full';
+                p.style.left = `${Math.random()*100}%`;
+                p.style.top = `${Math.random()*100}%`;
+                p.style.animation = `float ${5 + Math.random()*8}s infinite ease-in-out`;
+                container.appendChild(p);
+            }
+        }
+        document.head.insertAdjacentHTML('beforeend', `<style>@keyframes float { 0%,100% { transform: translateY(0) translateX(0); opacity: 0.3; } 50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; } }</style>`);
+        createParticles();
+
+        // Chatbot
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatInput = document.getElementById('chatInput');
+        const sendMsg = document.getElementById('sendMsg');
+        const chatMessages = document.getElementById('chatMessages');
+        let isChatOpen = false;
+
+        chatbotToggle.addEventListener('click', () => {
+            isChatOpen = !isChatOpen;
+            chatbotWindow.classList.toggle('scale-0', !isChatOpen);
+            chatbotWindow.classList.toggle('opacity-0', !isChatOpen);
+        });
+        closeChat.addEventListener('click', () => {
+            isChatOpen = false;
+            chatbotWindow.classList.add('scale-0', 'opacity-0');
+        });
+        function scrollChat() { chatMessages.scrollTop = chatMessages.scrollHeight; }
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            const userMsgEl = document.createElement('div');
+            userMsgEl.className = 'flex gap-3 max-w-[80%] ml-auto flex-row-reverse';
+            userMsgEl.innerHTML = `<div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center flex-shrink-0 mt-1"><i class="fa fa-user"></i></div><div class="glass p-3 rounded-xl">${text}</div>`;
+            chatMessages.appendChild(userMsgEl);
+            chatInput.value = '';
+            scrollChat();
+            setTimeout(() => {
+                let reply = '';
+                const q = text.toLowerCase();
+                if (q.includes('website')) reply = 'We build premium, high-performance websites — custom design, e-commerce, speed, security, and hosting all included.';
+                else if (q.includes('marketing') || q.includes('seo')) reply = 'Full digital marketing: SEO, Google Ads, social media management, email campaigns, and lead generation that delivers growth.';
+                else if (q.includes('brand') || q.includes('logo')) reply = 'Complete branding: logo, identity, print materials, video, and photography to make your brand unforgettable.';
+                else if (q.includes('business') || q.includes('automation')) reply = 'Smart business solutions: CRM, AI chatbots, automation, booking systems, and professional email setup.';
+                else if (q.includes('quote') || q.includes('price')) reply = 'Every project is custom — book a free consultation to get your exact quote and roadmap.';
+                else reply = 'Skyline Agency delivers premium digital solutions. Book a consultation to discuss your goals — we’re here to build greatness together.';
+                const botMsgEl = document.createElement('div');
+                botMsgEl.className = 'flex gap-3 max-w-[80%]';
+                botMsgEl.innerHTML = `<div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-1"><i class="fa fa-robot"></i></div><div class="glass p-3 rounded-xl">${reply}</div>`;
+                chatMessages.appendChild(botMsgEl);
+                scrollChat();
+            }, 800);
+        }
+        sendMsg.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keydown', e => e.key === 'Enter' && sendMessage());
+    </script>
+</body>
+</html>
