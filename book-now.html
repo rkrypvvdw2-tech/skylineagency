@@ -65,10 +65,13 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 bg-dark/30 backdrop-blur border-b border-accent/10">
         <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
             <a href="index.html" class="flex items-center gap-3">
                 <span class="text-2xl font-bold tracking-wider text-white">SKYLINE</span>
                 <span class="text-2xl font-bold glow-text">AGENCY</span>
             </a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8">
                 <a href="index.html" class="font-medium hover:text-accent transition-colors">Home</a>
                 <a href="about.html" class="font-medium hover:text-accent transition-colors">About</a>
@@ -78,21 +81,27 @@
                 <a href="blog.html" class="font-medium hover:text-accent transition-colors">Blog</a>
                 <a href="contact.html" class="font-medium hover:text-accent transition-colors">Contact</a>
                 <a href="contact.html" class="glass hover:bg-accent/20 px-5 py-2 rounded-lg transition-all">Book Consultation</a>
-                <a href="book-now.html" class="bg-accent/20 text-accent px-5 py-2 rounded-lg shadow-glow font-semibold">Get A Quote</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-5 py-2 rounded-lg transition-all shadow-glow hover:shadow-[0_0_30px_rgba(0,153,255,0.4)] font-semibold">Get A Quote</a>
             </div>
-            <button id="menuBtn" class="md:hidden text-white text-2xl"><i class="fa fa-bars"></i></button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
         </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20">
+
+        <!-- Mobile Menu - NOW FIXED & SPACED PROPERLY -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/80 backdrop-blur border-b border-accent/20 mt-2">
             <div class="container mx-auto px-6 py-4 flex flex-col gap-3">
-                <a href="index.html" class="py-2.5 font-medium hover:text-accent">Home</a>
-                <a href="about.html" class="py-2.5 font-medium hover:text-accent">About</a>
-                <a href="services.html" class="py-2.5 font-medium hover:text-accent">Services</a>
-                <a href="portfolio.html" class="py-2.5 font-medium hover:text-accent">Portfolio</a>
-                <a href="pricing.html" class="py-2.5 font-medium hover:text-accent">Pricing</a>
-                <a href="blog.html" class="py-2.5 font-medium hover:text-accent">Blog</a>
-                <a href="contact.html" class="py-2.5 font-medium hover:text-accent">Contact</a>
-                <a href="contact.html" class="glass px-4 py-2.5 rounded-lg text-center">Book Consultation</a>
-                <a href="book-now.html" class="bg-accent/20 text-accent px-4 py-2.5 rounded-lg text-center shadow-glow font-semibold">Get A Quote</a>
+                <a href="index.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Home</a>
+                <a href="about.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">About</a>
+                <a href="services.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Services</a>
+                <a href="portfolio.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Portfolio</a>
+                <a href="pricing.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Pricing</a>
+                <a href="blog.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Blog</a>
+                <a href="contact.html" class="py-3 px-2 font-medium hover:text-accent hover:bg-white/5 rounded-lg transition-colors">Contact</a>
+                <a href="contact.html" class="glass hover:bg-accent/20 px-4 py-3 rounded-lg text-center transition-all mt-2">Book Consultation</a>
+                <a href="book-now.html" class="bg-accent/20 hover:bg-accent/40 text-accent px-4 py-3 rounded-lg text-center transition-all shadow-glow mt-1 font-semibold">Get A Quote</a>
             </div>
         </div>
     </nav>
